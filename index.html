@@ -114,20 +114,32 @@
       font-size: 17px;
     }
 
-    a.button {
-      display: inline-block;
+    .upload-form input[type="file"] {
+      padding: 10px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+
+    .upload-form button {
+      margin-top: 10px;
       padding: 14px 28px;
       font-size: 18px;
       background-color: #00bfff;
       color: white;
       text-decoration: none;
+      border: none;
       border-radius: 8px;
       transition: all 0.3s ease;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       font-weight: 600;
+      cursor: pointer;
     }
 
-    a.button:hover {
+    .upload-form button:hover {
       background-color: #0088cc;
       transform: translateY(-2px);
       box-shadow: 0 6px 12px rgba(0,0,0,0.3);
@@ -158,13 +170,18 @@
     </div>
 
     <div class="content-box">
-      <h2 class="song-quote">🎵 Atmosfera JEST gorąca! Prażą nas promienie SŁOŃCA! 🎵</h2>
+      <h2 class="song-quote">🎵 Atmosfera JEST gorąca! Prażyły nas promienie SŁOŃCA! 🎵</h2>
       <p>
         Nie pozwól, aby emocje opadły – 
         <span class="highlight">podziel się swoimi zdjęciami i filmami z Wujozy</span>
       </p>
       <p class="after-text">Tworzymy aftermovie – każde zdjęcie i film się liczy!</p>
-      <a class="button" href="https://www.dropbox.com/scl/fo/umpidk1a22v728cluo68y/AJoPkjlIlBqQrSfyC_eJAio?rlkey=2sn4nj7jkj6ej028352cu3wmn&st=bhz1ib5k&dl=0" target="_blank" onclick="playMusic()">Wyślij film/zdjęcie</a>
+
+      <!-- Formularz Netlify -->
+      <form name="upload-wujoza" method="POST" data-netlify="true" enctype="multipart/form-data" class="upload-form">
+        <p><input type="file" name="file" required></p>
+        <p><button type="submit">Wyślij film/zdjęcie</button></p>
+      </form>
     </div>
   </div>
 
