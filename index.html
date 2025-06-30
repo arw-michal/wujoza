@@ -33,16 +33,16 @@
       text-shadow: 2px 2px 10px #000;
     }
 
-   .content-box {
-  background: rgba(255, 255, 255, 0.85); /* Jasny półprzezroczysty */
-  color: #111; /* Ciemny tekst dla kontrastu */
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 40px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
+    .content-box {
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
 
     .content-box h2 {
       font-size: 22px;
@@ -86,6 +86,25 @@
   <div class="headline">Kajaki z Wujem – Wujoza Totalna 2025</div>
 
   <div class="content-box">
-    <h2>Atmosfera jest gorąca! Prażą nas promienie ŚŁOŃCA!</h2>
+    <h2>Atmosfera była gorąca! Prażyły nas promienie ŚŁOŃCA!</h2>
     <p>Nie pozwól, aby emocje opadły – podziel się swoimi zdjęciami i filmami z Wujozy TOTALNEJ.</p>
-    <a class="button" href="https://www.dropbox.com/scl/fo/umpid
+    <a class="button" href="https://www.dropbox.com/scl/fo/umpidk1a22v728cluo68y/AJoPkjlIlBqQrSfyC_eJAio?rlkey=2sn4nj7jkj6ej028352cu3wmn&st=bhz1ib5k&dl=0"
+       target="_blank" onclick="playMusic()">Wyślij film/zdjęcie</a>
+  </div>
+
+  <!-- Muzyka -->
+  <audio id="muzyka" loop>
+    <source src="muzyka.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    function playMusic() {
+      const audio = document.getElementById("muzyka");
+      if (audio.paused) {
+        audio.play().catch(e => console.log("Auto-play zablokowany: ", e));
+      }
+    }
+  </script>
+
+</body>
+</html>
