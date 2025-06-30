@@ -1,238 +1,131 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <title>Kajaki z Wujem – Wujoza Totalna 2025</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Wujoza Upload – Kajaki z Wujem</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      font-family: 'Inter', sans-serif;
-      overflow: hidden;
-    }
-
-    .bg-video {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    .page-wrapper {
-      height: 100%;
-      width: 100%;
+    body {
+      font-family: sans-serif;
+      background: #f2f2f2;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      min-height: 100vh;
       padding: 20px;
-      text-align: center;
     }
 
-    .headline-box {
-      background: rgba(0, 0, 0, 0.65);
-      padding: 20px 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(255, 62, 191, 0.5);
-      max-width: 90%;
+    h1 {
+      color: #333;
       margin-bottom: 20px;
     }
 
-    .headline {
-      font-family: 'Bebas Neue', sans-serif;
-      line-height: 1;
-    }
-
-    .main-title {
-      font-size: clamp(64px, 8vw, 96px);
-      color: #ffffff;
-      font-weight: 400;
-      text-shadow: none;
-    }
-
-    .sub-title {
-      font-size: clamp(28px, 4vw, 40px);
-      color: #ff3ebf;
-      text-shadow: 0 0 8px #ff3ebf, 0 0 15px #ff3ebf;
-      animation: glow 2s ease-in-out infinite alternate;
-      margin-top: 6px;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 4px #ff3ebf, 0 0 8px #ff3ebf;
-      }
-      to {
-        text-shadow: 0 0 12px #ff3ebf, 0 0 24px #ff3ebf;
-      }
-    }
-
-    .content-box {
-      margin-top: 10px;
-      background: rgba(255, 255, 255, 0.85);
-      color: #111;
-      padding: 30px 20px;
-      border-radius: 20px;
-      max-width: 600px;
-      width: 90%;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      animation: fadeIn 1.2s ease-in;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .song-quote {
-      font-style: italic;
-      font-weight: 600;
-      font-size: 20px;
-      color: #ff3ebf;
-      text-shadow: 0 0 10px #ff3ebf;
-      margin-bottom: 20px;
-    }
-
-    .content-box p {
-      font-size: 17px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-
-    .highlight {
-      font-weight: 600;
-      color: #ff3ebf;
-    }
-
-    .after-text {
-      font-weight: 600;
-      color: #ff3ebf;
-      margin-bottom: 20px;
-      font-size: 17px;
-    }
-
-    .upload-form {
-      margin-top: 20px;
-    }
-
-    .upload-form input[type="file"] {
-      display: block;
-      margin: 0 auto 20px auto;
-      font-size: 16px;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+    form {
       background: #fff;
-      max-width: 80%;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
     }
 
-    .upload-form button {
-      padding: 12px 28px;
-      font-size: 18px;
+    input[type="file"] {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
       background-color: #00bfff;
-      color: white;
+      color: #fff;
+      font-size: 16px;
       border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      border-radius: 6px;
       cursor: pointer;
-      transition: 0.3s ease;
     }
 
-    .upload-form button:hover {
-      background-color: #0088cc;
+    button:hover {
+      background-color: #009fd6;
     }
 
-    #uploadMessage {
-      transition: all 0.3s ease;
-      margin-top: 12px;
+    progress {
+      width: 100%;
+      height: 20px;
+      margin-top: 15px;
+    }
+
+    #message {
+      margin-top: 15px;
       font-weight: bold;
       color: green;
-      display: none;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    audio {
-      display: none;
     }
   </style>
 </head>
 <body>
 
-  <video autoplay muted loop class="bg-video">
-    <source src="kajaki.mp4" type="video/mp4">
-  </video>
+  <h1>Prześlij film lub zdjęcie z Wujozy</h1>
 
-  <div class="page-wrapper">
-    <div class="headline-box">
-      <div class="headline">
-        <div class="main-title">KAJAKI Z WUJEM</div>
-        <div class="sub-title">WUJOZA TOTALNA 2025</div>
-      </div>
-    </div>
-
-    <div class="content-box">
-      <h2 class="song-quote">🎵 Atmosfera JEST gorąca! Prażyły nas promienie SŁOŃCA! 🎵</h2>
-      <p>
-        Nie pozwól, aby emocje opadły –
-        <span class="highlight">podziel się swoimi zdjęciami i filmami z Wujozy</span>
-      </p>
-      <p class="after-text">Tworzymy aftermovie – każde zdjęcie i film się liczy!</p>
-
-      <!-- Formularz Netlify bez przekierowania -->
-      <form name="upload-wujoza"
-            method="POST"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-            enctype="multipart/form-data"
-            id="uploadForm"
-            class="upload-form">
-
-        <input type="hidden" name="form-name" value="upload-wujoza" />
-        <p style="display:none">
-          <label>Nie wypełniaj tego pola: <input name="bot-field" /></label>
-        </p>
-        <p><input type="file" name="file" id="fileInput" required></p>
-        <p><button type="submit">Wyślij film/zdjęcie</button></p>
-        <p id="uploadMessage">✅ Wysłano! Możesz dodać kolejny plik.</p>
-      </form>
-    </div>
-  </div>
-
-  <audio id="muzyka" autoplay loop>
-    <source src="muzyka.mp3" type="audio/mpeg">
-  </audio>
+  <form id="uploadForm">
+    <input type="file" id="fileInput" required />
+    <button type="submit">Wyślij</button>
+    <progress id="progressBar" value="0" max="100" style="display: none;"></progress>
+    <div id="message"></div>
+  </form>
 
   <script>
     const form = document.getElementById("uploadForm");
-    const fileInput = document.getElementById("fileInput");
-    const message = document.getElementById("uploadMessage");
+    const input = document.getElementById("fileInput");
+    const message = document.getElementById("message");
+    const progress = document.getElementById("progressBar");
 
-    form.addEventListener("submit", async function(e) {
+    form.addEventListener("submit", function(e) {
       e.preventDefault();
-      const formData = new FormData(form);
 
-      try {
-        await fetch("/", {
-          method: "POST",
-          body: formData
-        });
-        fileInput.value = "";
-        message.style.display = "block";
-        setTimeout(() => {
-          message.style.display = "none";
-        }, 4000);
-      } catch (err) {
-        alert("Wystąpił błąd. Spróbuj ponownie.");
-      }
+      const file = input.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = function() {
+        const base64 = reader.result.split(',')[1];
+        const formData = new FormData();
+        formData.append("file", base64);
+        formData.append("filename", file.name);
+        formData.append("mimeType", file.type);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://script.google.com/macros/s/AKfycbz59nP9PJbdfgbqeP9ctldrm6KEgCEEPiPlRAMRKMgl17kzLVHS5IFDlS6TGP0duIS0ww/exec");
+
+        progress.style.display = "block";
+        progress.value = 0;
+
+        xhr.upload.onprogress = function(event) {
+          if (event.lengthComputable) {
+            const percent = (event.loaded / event.total) * 100;
+            progress.value = percent;
+          }
+        };
+
+        xhr.onload = function() {
+          if (xhr.status === 200 && xhr.responseText === "OK") {
+            message.textContent = "✅ Plik wysłany!";
+            message.style.color = "green";
+            input.value = "";
+            progress.value = 0;
+          } else {
+            message.textContent = "❌ Wystąpił błąd przy wysyłaniu.";
+            message.style.color = "red";
+          }
+        };
+
+        xhr.onerror = function() {
+          message.textContent = "❌ Nie udało się połączyć z serwerem.";
+          message.style.color = "red";
+        };
+
+        xhr.send(formData);
+      };
     });
   </script>
 
