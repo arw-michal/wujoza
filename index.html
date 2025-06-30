@@ -227,15 +227,17 @@
           });
 
           const text = await response.text();
-          if (text.trim() === "OK") {
+          console.log("Odpowiedź skryptu:", text); // debug
+
+          if (text.toLowerCase().includes("ok")) {
             input.value = "";
             message.style.display = "block";
             setTimeout(() => { message.style.display = "none"; }, 4000);
           } else {
-            alert("Błąd: " + text);
+            alert("Błąd serwera: " + text);
           }
         } catch (err) {
-          alert("Błąd sieci: " + err);
+          alert("Błąd sieci: " + err.message);
         }
       };
 
