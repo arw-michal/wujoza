@@ -5,236 +5,116 @@
   <title>Kajaki z Wujem – Wujoza Totalna 2025</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* ... (tu wklej swój dotychczasowy CSS) ... */
 
-    html, body {
-      height: 100%;
-      font-family: 'Inter', sans-serif;
-      overflow: hidden;
+    /* nowy styl dla progress bar */
+    .progress-container {
+      width: 80%;
+      max-width: 400px;
+      margin: 10px auto;
     }
-
-    .bg-video {
-      position: fixed;
-      top: 0; left: 0;
+    progress {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
+      height: 20px;
+      appearance: none;
     }
-
-    .page-wrapper {
-      height: 100%;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      text-align: center;
+    progress::-webkit-progress-bar {
+      background: #eee;
+      border-radius: 10px;
     }
-
-    .headline-box {
-      background: rgba(0, 0, 0, 0.65);
-      padding: 20px 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(255, 62, 191, 0.5);
-      max-width: 90%;
-      margin-bottom: 20px;
-    }
-
-    .headline {
-      font-family: 'Bebas Neue', sans-serif;
-      line-height: 1;
-    }
-
-    .main-title {
-      font-size: clamp(64px, 8vw, 96px);
-      color: #ffffff;
-      font-weight: 400;
-      text-shadow: none;
-    }
-
-    .sub-title {
-      font-size: clamp(28px, 4vw, 40px);
-      color: #ff3ebf;
-      text-shadow: 0 0 8px #ff3ebf, 0 0 15px #ff3ebf;
-      animation: glow 2s ease-in-out infinite alternate;
-      margin-top: 6px;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 4px #ff3ebf, 0 0 8px #ff3ebf;
-      }
-      to {
-        text-shadow: 0 0 12px #ff3ebf, 0 0 24px #ff3ebf;
-      }
-    }
-
-    .content-box {
-      margin-top: 10px;
-      background: rgba(255, 255, 255, 0.85);
-      color: #111;
-      padding: 30px 20px;
-      border-radius: 20px;
-      max-width: 600px;
-      width: 90%;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      animation: fadeIn 1.2s ease-in;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .song-quote {
-      font-style: italic;
-      font-weight: 600;
-      font-size: 20px;
-      color: #ff3ebf;
-      text-shadow: 0 0 10px #ff3ebf;
-      margin-bottom: 20px;
-    }
-
-    .content-box p {
-      font-size: 17px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-
-    .highlight {
-      font-weight: 600;
-      color: #ff3ebf;
-    }
-
-    .after-text {
-      font-weight: 600;
-      color: #ff3ebf;
-      margin-bottom: 20px;
-      font-size: 17px;
-    }
-
-    .upload-form {
-      margin-top: 20px;
-    }
-
-    .upload-form input[type="file"] {
-      display: block;
-      margin: 0 auto 20px auto;
-      font-size: 16px;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      background: #fff;
-      max-width: 80%;
-    }
-
-    .upload-form button {
-      padding: 12px 28px;
-      font-size: 18px;
-      background-color: #00bfff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    .upload-form button:hover {
-      background-color: #0088cc;
-    }
-
-    #uploadMessage {
-      transition: all 0.3s ease;
-      margin-top: 12px;
-      font-weight: bold;
-      color: green;
-      display: none;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    audio {
-      display: none;
+    progress::-webkit-progress-value {
+      background: #00bfff;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
+  <!-- tło, nagłówki itp. jak dotąd -->
+  <div class="content-box">
+    <!-- ... cytaty itp. ... -->
 
-  <video autoplay muted loop class="bg-video">
-    <source src="kajaki.mp4" type="video/mp4">
-  </video>
-
-  <div class="page-wrapper">
-    <div class="headline-box">
-      <div class="headline">
-        <div class="main-title">KAJAKI Z WUJEM</div>
-        <div class="sub-title">WUJOZA TOTALNA 2025</div>
+    <form id="uploadForm" class="upload-form">
+      <input type="file" id="fileInput" required>
+      <div class="progress-container" style="display:none;">
+        <progress id="uploadProgress" value="0" max="100"></progress>
       </div>
-    </div>
-
-    <div class="content-box">
-      <h2 class="song-quote">🎵 Atmosfera JEST gorąca! Prażyły nas promienie SŁOŃCA! 🎵</h2>
-      <p>
-        Nie pozwól, aby emocje opadły –
-        <span class="highlight">podziel się swoimi zdjęciami i filmami z Wujozy</span>
+      <button type="submit">Wyślij film/zdjęcie</button>
+      <p id="uploadMessage" style="display:none; color:green; font-weight:bold; margin-top:12px;">
+        ✅ Wysłano! Możesz dodać kolejny plik.
       </p>
-      <p class="after-text">Tworzymy aftermovie – każde zdjęcie i film się liczy!</p>
-
-      <!-- Formularz Netlify bez przekierowania -->
-      <form name="upload-wujoza"
-            method="POST"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-            enctype="multipart/form-data"
-            id="uploadForm"
-            class="upload-form">
-
-        <input type="hidden" name="form-name" value="upload-wujoza" />
-        <p style="display:none">
-          <label>Nie wypełniaj tego pola: <input name="bot-field" /></label>
-        </p>
-        <p><input type="file" name="file" id="fileInput" required></p>
-        <p><button type="submit">Wyślij film/zdjęcie</button></p>
-        <p id="uploadMessage">✅ Wysłano! Możesz dodać kolejny plik.</p>
-      </form>
-    </div>
+    </form>
   </div>
 
-  <audio id="muzyka" autoplay loop>
-    <source src="muzyka.mp3" type="audio/mpeg">
-  </audio>
-
   <script>
-    const form = document.getElementById("uploadForm");
-    const fileInput = document.getElementById("fileInput");
-    const message = document.getElementById("uploadMessage");
+    const SCRIPT_URL = 'TU_WKLEJ_SWÓJ_WEB_APP_URL_Z_APPS_SCRIPT';
+    const form = document.getElementById('uploadForm');
+    const fileInput = document.getElementById('fileInput');
+    const progressBar = document.getElementById('uploadProgress');
+    const progContainer = document.querySelector('.progress-container');
+    const message = document.getElementById('uploadMessage');
 
-    form.addEventListener("submit", async function(e) {
+    form.addEventListener('submit', e => {
       e.preventDefault();
-      const formData = new FormData(form);
+      const file = fileInput.files[0];
+      if (!file) return;
 
-      try {
-        await fetch("/", {
-          method: "POST",
-          body: formData
-        });
-        fileInput.value = "";
-        message.style.display = "block";
-        setTimeout(() => {
-          message.style.display = "none";
-        }, 4000);
-      } catch (err) {
-        alert("Wystąpił błąd. Spróbuj ponownie.");
-      }
+      // przygotowanie czytnika pliku
+      const reader = new FileReader();
+      reader.onload = () => {
+        // base64 bez prefixu data:
+        const base64 = reader.result.split(',')[1];
+        const payload = {
+          filename: file.name,
+          mimeType: file.type,
+          file: base64
+        };
+
+        // ustaw progress bar
+        progContainer.style.display = 'block';
+        progressBar.value = 0;
+
+        // używamy XMLHttpRequest żeby mieć dostęp do upload.onprogress
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', SCRIPT_URL, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.upload.onprogress = evt => {
+          if (evt.lengthComputable) {
+            const percent = Math.round(evt.loaded / evt.total * 100);
+            progressBar.value = percent;
+          }
+        };
+
+        xhr.onload = () => {
+          progContainer.style.display = 'none';
+          if (xhr.status === 200) {
+            const resp = JSON.parse(xhr.responseText);
+            if (resp.status === 'OK') {
+              message.style.display = 'block';
+              setTimeout(() => message.style.display = 'none', 4000);
+              fileInput.value = '';
+            } else {
+              alert('Błąd serwera: ' + resp.message);
+            }
+          } else {
+            alert('Błąd sieci: ' + xhr.status);
+          }
+        };
+
+        xhr.onerror = () => {
+          progContainer.style.display = 'none';
+          alert('Wystąpił błąd podczas wysyłania.');
+        };
+
+        xhr.send(JSON.stringify(payload));
+      };
+
+      reader.onerror = () => {
+        alert('Nie udało się odczytać pliku.');
+      };
+
+      reader.readAsDataURL(file);
     });
   </script>
-
 </body>
 </html>
