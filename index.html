@@ -55,6 +55,7 @@
       font-size: clamp(64px, 8vw, 96px);
       color: #ffffff;
       font-weight: 400;
+      text-shadow: none;
     }
 
     .sub-title {
@@ -99,7 +100,7 @@
     .content-box p {
       font-size: 17px;
       line-height: 1.5;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .highlight {
@@ -110,39 +111,48 @@
     .after-text {
       font-weight: 600;
       color: #ff3ebf;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       font-size: 17px;
     }
 
+    .upload-form {
+      margin-top: 20px;
+    }
+
     .upload-form input[type="file"] {
+      display: block;
+      margin: 0 auto 20px auto;
+      font-size: 16px;
       padding: 10px;
-      background: white;
       border-radius: 8px;
       border: 1px solid #ccc;
-      font-size: 16px;
-      margin-bottom: 16px;
-      width: 100%;
+      background: #fff;
+      max-width: 80%;
     }
 
     .upload-form button {
-      margin-top: 10px;
-      padding: 14px 28px;
+      padding: 12px 28px;
       font-size: 18px;
       background-color: #00bfff;
       color: white;
-      text-decoration: none;
       border: none;
       border-radius: 8px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       cursor: pointer;
+      transition: 0.3s ease;
     }
 
     .upload-form button:hover {
       background-color: #0088cc;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    #uploadMessage {
+      transition: all 0.3s ease;
+      margin-top: 12px;
+      font-weight: bold;
+      color: green;
+      display: none;
     }
 
     @keyframes fadeIn {
@@ -172,30 +182,51 @@
     <div class="content-box">
       <h2 class="song-quote">🎵 Atmosfera JEST gorąca! Prażyły nas promienie SŁOŃCA! 🎵</h2>
       <p>
-        Nie pozwól, aby emocje opadły – 
+        Nie pozwól, aby emocje opadły –
         <span class="highlight">podziel się swoimi zdjęciami i filmami z Wujozy</span>
       </p>
       <p class="after-text">Tworzymy aftermovie – każde zdjęcie i film się liczy!</p>
 
-      <!-- Formularz Netlify -->
-      <form name="upload-wujoza" method="POST" data-netlify="true" enctype="multipart/form-data" class="upload-form">
-        <p><input type="file" name="file" required></p>
+      <!-- Formularz bez przekierowania -->
+      <form name="upload-wujoza" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" id="uploadForm" class="upload-form">
+        <input type="hidden" name="form-name" value="upload-wujoza" />
+        <p style="display:none">
+          <label>Nie wypełniaj tego pola: <input name="bot-field" /></label>
+        </p>
+        <p><input type="file" name="file" id="fileInput" required></p>
         <p><button type="submit">Wyślij film/zdjęcie</button></p>
+        <p id="uploadMessage">✅ Wysłano! Możesz dodać kolejny plik.</p>
       </form>
     </div>
   </div>
 
-  <audio id="muzyka" loop>
+  <audio id="muzyka" autoplay loop>
     <source src="muzyka.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    function playMusic() {
-      const audio = document.getElementById("muzyka");
-      if (audio.paused) {
-        audio.play().catch(e => console.log("Autoodtwarzanie zablokowane:", e));
+    const form = document.getElementById("uploadForm");
+    const fileInput = document.getElementById("fileInput");
+    const message = document.getElementById("uploadMessage");
+
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      try {
+        await fetch("/", {
+          method: "POST",
+          body: formData
+        });
+        fileInput.value = "";
+        message.style.display = "block";
+        setTimeout(() => {
+          message.style.display = "none";
+        }, 4000);
+      } catch (err) {
+        alert("Wystąpił błąd. Spróbuj ponownie.");
       }
-    }
+    });
   </script>
 
 </body>
