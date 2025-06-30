@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Kajaki z Wujem – Wujoza Totalna 2025</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -13,7 +13,7 @@
 
     html, body {
       height: 100%;
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', sans-serif;
       overflow: hidden;
     }
 
@@ -48,18 +48,21 @@
 
     .headline {
       font-family: 'Bebas Neue', sans-serif;
-      color: #ff3ebf;
-      text-shadow: 0 0 8px #ff3ebf, 0 0 15px #ff3ebf;
-      animation: glow 2s ease-in-out infinite alternate;
+      line-height: 1;
     }
 
     .main-title {
-      font-size: clamp(40px, 6vw, 72px);
+      font-size: clamp(64px, 8vw, 96px);
+      color: #ffffff;
+      font-weight: 400;
     }
 
     .sub-title {
-      font-size: clamp(20px, 3vw, 36px);
-      margin-top: 8px;
+      font-size: clamp(28px, 4vw, 40px);
+      color: #ff3ebf;
+      text-shadow: 0 0 8px #ff3ebf, 0 0 15px #ff3ebf;
+      animation: glow 2s ease-in-out infinite alternate;
+      margin-top: 6px;
     }
 
     @keyframes glow {
@@ -81,25 +84,31 @@
       width: 90%;
       box-shadow: 0 0 20px rgba(0,0,0,0.3);
       animation: fadeIn 1.2s ease-in;
+      font-family: 'Inter', sans-serif;
     }
 
-    .content-box h2 {
+    .song-quote {
+      font-style: italic;
+      font-weight: 600;
       font-size: 20px;
-      margin-bottom: 16px;
+      color: #ff3ebf;
+      text-shadow: 0 0 10px #ff3ebf;
+      margin-bottom: 20px;
     }
 
     .content-box p {
-      font-size: 16px;
+      font-size: 17px;
+      line-height: 1.5;
       margin-bottom: 24px;
     }
 
     .highlight {
-      font-weight: bold;
+      font-weight: 600;
       color: #ff3ebf;
     }
 
     .after-text {
-      font-weight: bold;
+      font-weight: 600;
       color: #ff3ebf;
       margin-bottom: 24px;
       font-size: 17px;
@@ -115,6 +124,7 @@
       border-radius: 8px;
       transition: all 0.3s ease;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      font-weight: 600;
     }
 
     a.button:hover {
@@ -148,7 +158,7 @@
     </div>
 
     <div class="content-box">
-      <h2>Atmosfera JEST gorąca! Prażyły nas promienie SŁOŃCA!</h2>
+      <h2 class="song-quote">🎵 Atmosfera JEST gorąca! Prażyły nas promienie SŁOŃCA! 🎵</h2>
       <p>
         Nie pozwól, aby emocje opadły – 
         <span class="highlight">podziel się swoimi zdjęciami i filmami z Wujozy</span>
